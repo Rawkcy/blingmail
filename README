@@ -1,9 +1,14 @@
-Validate gmails
+We want to make it easy for someone to approve an email to send out.
 
+Tim Cheng
+Roxanne Guo
+Sarah Hum
+Jonathan Ng
 
 ================
 Setting up flask
 ================
+Depricated before it was out.
 
 1. Download virtualenv
 2. Download pip
@@ -11,4 +16,3 @@ Setting up flask
 4. $ source env/bin/activate
 5. $ 
 
-Depricated before it was out.
