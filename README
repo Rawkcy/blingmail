@@ -1,3 +1,14 @@
 Validate gmails
 
-Tim was here.
+
+================
+Setting up flask
+================
+
+1. Download virtualenv
+2. Download pip
+3. $ virtualenv env
+4. $ source env/bin/activate
+5. $ 
+
+Depricated before it was out.
