@@ -1,0 +1,14 @@
+{
+  "manifest_version": 2,
+
+  "name": "EmailWing",
+  "description": "This extension makes it easy to submit your emails for approval from others in GMail",
+  "version": "0.1",
+
+  "content_scripts": [
+    {
+      "matches": ["https://mail.google.com/*"],
+      "js": ["emailwing.js"]
+    }
+  ]
+}
