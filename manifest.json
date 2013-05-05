@@ -14,9 +14,7 @@
         "firebase.js",
         "emailwing.js"
       ],
-      "css": [
-        "emailwing.css"
-      ]
+      "run_at": "document_end"
     }
   ]
 }
