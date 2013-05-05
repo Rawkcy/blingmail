@@ -94,10 +94,74 @@ tryToHijackSidebar = function() {
   if (nodeExists('/user/' + userEmail + '/' + emailId)) {
     console.log('this email thread is in firebase');
     // HIJACK!! MUHAHAHAHA
-    // TODO hijack...
+    // Create approval pane.
+    var approvers = readData('/user/' + userEmail + '/' + emailId + '/approver');
+    if (approvers != null) {
+      console.log(JSON.stringify(approvers));
+    } else {
+      console.log('doesnt work...');
+    }
   } else {
     console.log('this email thread does not exist in firebase');
   }
   // TODO: take this out when we're done debugging.
-  $('div.nH.adC').after('<div id="right-sidebar"><section><h1>Approvers</h1><div class="approver approved"><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/c49.49.619.619/s160x160/164910_10151451395577017_1574110779_n.jpg" alt="" /><h2>Jon Ng</h2><h1 class="check">&#10003;</h1><h3>05/02/13 4:05PM</h3></div><div class="approver"><img src="https://secure.gravatar.com/avatar/f461b6d61f8692ca12a1a545a493d5f2?s=400&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png" alt="" /><h2>Roxanne Guo</h2><h3>Pending</h3></div><div class="approver approved"><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/c181.36.534.534/s160x160/530665_10151029834141116_2018307025_n.jpg" alt="" /><h2>Tim Cheng</h2><h1 class="check">&#10003;</h1><h3>05/02/13 2:21PM</h3></div></section></div>');
+  //$('div.nH.adC').after('<div id="right-sidebar"><section><h1>Approvers</h1><div class="approver approved"><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/c49.49.619.619/s160x160/164910_10151451395577017_1574110779_n.jpg" alt="" /><h2>Jon Ng</h2><h1 class="check">&#10003;</h1><h3>05/02/13 4:05PM</h3></div><div class="approver"><img src="https://secure.gravatar.com/avatar/f461b6d61f8692ca12a1a545a493d5f2?s=400&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png" alt="" /><h2>Roxanne Guo</h2><h3>Pending</h3></div><div class="approver approved"><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/c181.36.534.534/s160x160/530665_10151029834141116_2018307025_n.jpg" alt="" /><h2>Tim Cheng</h2><h1 class="check">&#10003;</h1><h3>05/02/13 2:21PM</h3></div></section></div>');
+
+  userEmail = wtf('user@gmail.com');
+  var tempId = 1234;
+  var pane = approvalPane();
+  var approvers = readData('/user/' + userEmail + '/' + tempId + '/approver');
+  console.log(JSON.stringify(approvers));
+  if (approvers != null) {
+    for (var key in approvers) {
+      if (approvers.hasOwnProperty(key)) {
+        var approver = approvers[key];
+        pane.addApprover(approver.name, key, approver.approved)
+      }
+    }
+  } else {
+    console.log('null approvers');
+  }
+  $('div.nH.adC').after(pane.getHtml());
 }
+
+/**
+ * Helper for generated the approval pane.
+ */
+approvalPane = function() {
+  var pane = {
+    /** The html element of the approval pane */
+    html: ['<div id="right-sidebar"><section><h1>Approvers</h1>'],
+    /** Adds an approver to the pane */
+    addApprover: function(name, email, approvalStatus) {
+      var domClass = 'approver';
+      if (approvalStatus == ApprovalStatus.APPROVED) {
+        domClass = domClass + ' approved';
+      }
+
+      this.html.push('<div class="' + domClass + '">');
+      // Hardcode each person.
+      if (name == 'Tim Cheng') {
+        this.html.push('<img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/c181.36.534.534/s160x160/530665_10151029834141116_2018307025_n.jpg" alt="" />'); 
+      } else if (name == 'Jonathan Ng') {
+        this.html.push('<img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/c49.49.619.619/s160x160/164910_10151451395577017_1574110779_n.jpg" alt="" />');
+      } else {
+        this.html.push('<img src="https://secure.gravatar.com/avatar/f461b6d61f8692ca12a1a545a493d5f2?s=400&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png" alt="" />');
+      }
+      this.html.push('<h2>' + name + '</h2>');
+
+      if (approvalStatus == ApprovalStatus.APPROVED) {
+        this.html.push('<h1 class="check">&#10003;</h1>');
+        this.html.push('<h3>Approved</h3>');
+      } else {
+        this.html.push('<h3>Pending</h3>');
+      }
+
+      this.html.push('</div>');
+    },
+    getHtml: function() {
+      return this.html.join("") + '</section></div>';
+    }
+  }
+  return pane;
+};

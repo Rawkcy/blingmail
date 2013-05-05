@@ -82,7 +82,6 @@ wtf = function(string) {
  */
 nodeExists = function(pathFromRoot) {
   var path = FIREBASE_ROOT_URL + pathFromRoot;
-  console.log(path);
   try {
     var emailRef = new Firebase(path);
     var exist;
@@ -99,6 +98,51 @@ nodeExists = function(pathFromRoot) {
     return false;
   }
 };
+
+readData = function(pathFromRoot) {
+  var path = FIREBASE_ROOT_URL + pathFromRoot;
+  console.log('reading data from ' + path);
+  try {
+    var data = null;
+    var ref = new Firebase(path);
+    ref.on('value', function(snapshot) {
+      if(snapshot.val() === null) {
+        console.log('Could not read data. Might not exist.');
+      } else {
+        console.log('Could read data.');
+        data = snapshot.val();
+      }
+    });
+    return data;
+  } catch (err) {
+    return null;
+  }
+};
+
+//getApprovers = function(pathFromRoot) {
+//  var path = FIREBASE_ROOT_URL + pathFromRoot;
+//  console.log('reading approvers from ' + path);
+//  try {
+//    var ref = new Firebase(path);
+//    ref.on('value', function(snapshot) {
+//      if(snapshot.val() === null) {
+//        alert('Could not read data. Might not exist.');
+//        return null;
+//      } else {
+//        alert('Could read data.');
+//        return snapshot.val();
+//      }
+//    });
+//  } catch (err) {
+//    return null;
+//  }
+//  for (var key in validation_messages) {
+//   var obj = validation_messages[key];
+//   for (var prop in obj) {
+//      alert(prop + " = " + obj[prop]);
+//   }
+//}
+//};
 
 
 
