@@ -149,10 +149,14 @@ writeUserData = function(pathFromRoot) {
         console.log('Could not read data. Might not exist.');
       } else {
         console.log('Could read data.');
-        var reply = $('div.gmail_quote').text().split('============================================================')[1];
+        console.log($('div.gmail_quote').html());
+        var reply = $('div.gmail_quote').html().split('==============================<wbr>==============================')[1];
+        console.log(reply.split('<img class="ajT"')[0]);
+        reply = reply.split('<img class="ajT"')[0];
         reply = reply.replace(/<br>/g, "\n");
         reply = reply.replace(/<\/div>/g, "\n");
         reply = reply.replace(/<div[^>]*>/g, "");
+        console.log(reply);
         insertDiffReplies('ma', snapshot.val(), reply);
       }
     });
