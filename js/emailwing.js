@@ -78,7 +78,7 @@ $(document).ready(function() {
       var link = 'http://emailwing.herokuapp.com/' + from + '/' + id + '/' + approver;
 
       startGetApproval(from, id, to, subject, body, approver);
-      window.open(generateMailToLinkForApproval(to, from, subject, body, to, link));
+      window.open(generateMailToLinkForApproval(to, from, subject, body, approver, link));
     });
   });
 
@@ -184,10 +184,10 @@ approvalPane = function() {
       this.html.push('<h2>' + name + '</h2>');
 
       if (approvalStatus == ApprovalStatus.APPROVED) {
-        this.html.push('<h1 class="check">&#10003;</h1>');
+        this.html.push('<img class="check" src="http://i.imgur.com/K72NudY.png" alt="check" />');
         this.html.push('<h3>Approved</h3>');
       } else if (approvalStatus == ApprovalStatus.EDITS) {
-        this.html.push('<h1 class="check">&#10003;</h1>');
+        this.html.push('<img class="check" src="http://i.imgur.com/QSPWJaV.png" alt="pencil" />');
         this.html.push('<h3>Submitted edits</h3>');
       } else {
         this.html.push('<h3>Pending</h3>');

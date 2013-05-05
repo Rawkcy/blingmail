@@ -1,4 +1,5 @@
 /* put your styles in here */
+
 button {
     padding: 0px 15px;
     line-height: 27px;
@@ -59,14 +60,22 @@ section {
     background: #fff;
 }
 
-.check {
+.check, .pencil {
     position: absolute;
     font-size: 42px;
-    top: 15px;
-    left: 10px;
+    width: 40px;
+    height: 40px;
+    top: 25px;
+    left: 30px;
     color: #0ad300;
     font-weight: bold;
     text-shadow: 1px 1px 1px #555;
+    background-image: url("../img/check.png");
+}
+
+.pencil {
+    color: yellow;
+    background-image: url("../img/pencil.png");
 }
 
 h1 {
@@ -109,7 +118,7 @@ img {
 }
 
 .edited {
-    background: #fff5a3;
+    background: #fffddb;
 }
 
 #send-approved {
