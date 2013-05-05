@@ -84,6 +84,11 @@ $(document).ready(function() {
   });
 
   $('div.approver').live('click', function() {
+    if($('.aeU').css('display') == 'block') {
+      $('.aeU').css('display', 'none');
+    } else {
+      $('.aeU').css('display', 'block');
+    }
     var userEmail = $('span.gD').attr('email');
     //var id = window.location.href.split('?compose=')[1];
     var id = 1234;
@@ -104,8 +109,8 @@ tryToHijackSidebar = function() {
   // TODO: hardcode stuff here if necessary
   // Check if email id is in the database
   var emailId = url.substring(url.lastIndexOf('/') + 1);
-  //emailId = 1234;
-  var userEmail = $('div.iw span.gD').attr('email');
+  emailId = 1234;
+  var userEmail = $('span.gD').attr('email');
   //userEmail = 'user@gmail.com';
   userEmail = wtf(userEmail);
   console.log('useremail=' + userEmail);

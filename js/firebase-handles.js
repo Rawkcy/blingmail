@@ -65,7 +65,7 @@ sendApproval = function(authorEmail, approverEmail, emailId, approvalStatus) {
 
 firebaseCallback = function(error) {
     if (error) {
-      console.log('Cannot save data ' + error); 
+      console.log('Cannot save data ' + error);
     } else {
       console.log('Data saved successfully');
     }
