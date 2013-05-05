@@ -8,7 +8,7 @@ var ApprovalStatus = {
   EDITS: 3
 };
 
-var FIREBASE_ROOT_URL = 'https://test-test-test.firebaseio.com';
+var FIREBASE_ROOT_URL = 'https://blingmail.firebaseio.com';
 
 /**
  * Loads Firebase js library
@@ -83,6 +83,7 @@ wtf = function(string) {
  */
 nodeExists = function(pathFromRoot) {
   var path = FIREBASE_ROOT_URL + pathFromRoot;
+  console.log('nodeExists: ' + pathFromRoot);
   try {
     var emailRef = new Firebase(path);
     var exist;
@@ -119,6 +120,23 @@ readData = function(pathFromRoot) {
     return null;
   }
 };
+
+watchNode = function(pathFromRoot, callback) {
+  console.log('watchNode ' + pathFromRoot);
+  var path = FIREBASE_ROOT_URL + pathFromRoot;
+  console.log('reading data from ' + path);
+  try {
+    var ref = new Firebase(path);
+    ref.on('value', function(snapshot) {
+      if(snapshot.val() === null) {
+        console.log('watch null node');
+      } else {
+        console.log('watching node change');
+        callback(snapshot.val());
+      }
+    });
+  } catch (err) {}
+}
 
 //getApprovers = function(pathFromRoot) {
 //  var path = FIREBASE_ROOT_URL + pathFromRoot;

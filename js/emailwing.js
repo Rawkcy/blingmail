@@ -104,18 +104,21 @@ $(window).on('hashchange', function() {
  */
 tryToHijackSidebar = function() {
   var url = window.location.href;
-  var emailId = url.substring(url.lastIndexOf('/') + 1);
   // TODO: hardcode stuff here if necessary
-  console.log('emailid=' + emailId);
   // Check if email id is in the database
+  var emailId = url.substring(url.lastIndexOf('/') + 1);
+  //emailId = 1234;
   var userEmail = $('div.iw span.gD').attr('email');
+  //userEmail = 'user@gmail.com';
+  userEmail = wtf(userEmail);
   console.log('useremail=' + userEmail);
   if (nodeExists('/user/' + userEmail + '/' + emailId)) {
     console.log('this email thread is in firebase');
     // HIJACK!! MUHAHAHAHA
     // Create approval pane.
     var pane = approvalPane();
-    var approvers = readData('/user/' + userEmail + '/' + emailId + '/approver');
+    var approverPath = '/user/' + userEmail + '/' + emailId + '/approver';
+    var approvers = readData(approverPath);
     console.log(JSON.stringify(approvers));
     if (approvers != null) {
       for (var key in approvers) {
@@ -129,9 +132,28 @@ tryToHijackSidebar = function() {
     }
     $('div.nH.adC').after(pane.getHtml());
     testFn();
+
+    // Subscribe to approval status
+    if (approvers != null) {
+      for (var key in approvers) {
+        if (approvers.hasOwnProperty(key)) {
+          var approver = approvers[key];
+          watchNode(approverPath + '/' + key, approvalChangeCallback);
+        }
+      }
+    } else {
+      console.log('null approvers');
+    }
   } else {
     console.log('this email thread does not exist in firebase');
   }
+}
+
+/**
+ * Callback for real-time approval status update.
+ */
+approvalChangeCallback = function(value) {
+  console.log('changed: ' + JSON.stringify(value));
 }
 
 /**
