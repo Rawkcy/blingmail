@@ -18,12 +18,12 @@ button:hover {
     border: 1px solid #1a9316;
 }
 
-table {
+#approval-fields {
     width: 100%;
 }
 
-table tr td:first-child {
-    width: 114px;
+#approval-fields tr td:first-child {
+    width: 120px;
 }
 
 #approval-emails {
@@ -32,4 +32,5 @@ table tr td:first-child {
     outline: none;
     background: whiteSmoke;
     font-size: 13px;
+    color: #777;
 }
