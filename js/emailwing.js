@@ -16,3 +16,11 @@ $(document).ready(function() {
     });
   });
 });
+
+function generateMailToLink(to, from, sub, bod, approvers, approvalLink) {
+  var header = "mailto:" + approvers;
+  var subject = "subject=" + from + " would like you to approve an email: " + '"' + sub + '"';
+  var separator = "\n\n============================================================\n\n";
+  var body = "body=" + "Hi there!\n\n" + from + " would like you to approve the following email to be sent to " + to + "." + separator + bod + separator + "To approve this email to be sent, please click here: " + approvalLink + "\n" + "If you would like to suggest a revision, just make the changes inline in a reply!\n\nThanks!,\nEmailWing Team";
+  return encodeURI(header + "?" + subject + "&amp;" + body);
+}
