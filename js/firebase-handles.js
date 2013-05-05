@@ -1,4 +1,13 @@
 /**
+ * Constants for approval statuses.
+ */
+var ApprovalStatus = {
+  UNSEEN: 0,
+  APPROVED: 1,
+  DISAPPROVED: 2
+};
+
+/**
  * Loads Firebase js library
  */
 $.getScript('https://cdn.firebase.com/v0/firebase.js', function() {
@@ -44,11 +53,11 @@ startGetApproval = function(userEmail, emailId, toEmail, subject, body, approver
  * @param emailId
  *      id of the email being approved
  */
-sendApproval = function(authorEmail, approverEmail, emailId) {
+sendApproval = function(authorEmail, approverEmail, emailId, approvalStatus) {
   console.log('sendApproval');
   var rootRef = new Firebase('https://blingmail.firebaseio.com');
   var emailRef = rootRef.child('user').child(wtf(authorEmail)).child(emailId);
-  emailRef.child('approver').child(wtf(approverEmail)).update({approved: true}, firebaseCallback);
+  emailRef.child('approver').child(wtf(approverEmail)).update({approved: approvalStatus}, firebaseCallback);
 };
 
 firebaseCallback = function(error) {
@@ -95,7 +104,7 @@ testSendApproval = function() {
   var userEmail = "user@gmail.com";
   var emailId = "1234";
   var approverEmail = "2@gmail.com";
-  sendApproval(userEmail, approverEmail, emailId);
+  sendApproval(userEmail, approverEmail, emailId, ApprovalStatus.UNSEEN);
 }
 
 
