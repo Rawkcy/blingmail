@@ -9,14 +9,17 @@
     {
       "matches": ["https://mail.google.com/*"],
       "css": [
-        "css/emailwing.css"
+        "css/emailwing.css",
+        "css/diffview.css"
       ],
       "js": [
-        "js/jquery-1.8.3.min.js", 
-        "js/firebase.js",
+        "js/difflib.js",
+        "js/diffview.js",
         "js/emailwing.js",
-        "js/jquery.livequery.js",
-        "js/firebase-handles.js"
+        "js/firebase-handles.js",
+        "js/firebase.js",
+        "js/jquery-1.8.3.min.js", 
+        "js/jquery.livequery.js"
       ],
       "run_at": "document_end"
     }
