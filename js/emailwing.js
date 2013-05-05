@@ -55,6 +55,12 @@ insertDiffReplies = function(appendAfter, orig, rev) {
   return opcodes;
 };
 
+testFn = function() {
+  //alert(generateFinalMailToLink("roxane.guo@gmail.com", "Thanks for all the
+  insertDiffReplies('ma', "This is a test","This is an amazing test");
+};
+
+
 $(document).ready(function() {
   // activate js code on "COMPOSE"
   $('div.T-I.J-J5-Ji.T-I-KE.L3').click(function() {
