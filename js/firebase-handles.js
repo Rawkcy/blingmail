@@ -150,10 +150,9 @@ writeUserData = function(pathFromRoot) {
       } else {
         console.log('Could read data.');
         var reply = $('div.gmail_quote').text().split('============================================================')[1];
-        console.log(typeof reply);
-        console.log(reply);
-        console.log(typeof snapshot.val());
-        console.log(snapshot.val());
+        reply = reply.replace(/<br>/g, "\n");
+        reply = reply.replace(/<\/div>/g, "\n");
+        reply = reply.replace(/<div[^>]*>/g, "");
         insertDiffReplies('ma', snapshot.val(), reply);
       }
     });

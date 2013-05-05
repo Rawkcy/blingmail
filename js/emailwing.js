@@ -6,13 +6,6 @@ generateMailToLinkForApproval = function(to, from, sub, bod, approvers, approval
   return encodeURI(header + "?" + subject + "&" + body);
 };
 
-generateFinalMailToLink = function(to, sub, bod) {
-  var header = "mailto:" + to;
-  var subject = "subject=" + sub;
-  var body = "body=" + bod;
-  return encodeURI(header + "?" + subject + "&" + body);
-};
-
 insertDiffReplies = function(appendAfter, orig, rev) {
   console.log('diffreplies function');
   var original = difflib.stringAsLines(orig);
@@ -56,7 +49,6 @@ insertDiffReplies = function(appendAfter, orig, rev) {
 };
 
 testFn = function() {
-  //alert(generateFinalMailToLink("roxane.guo@gmail.com", "Thanks for all the
   insertDiffReplies('ma', "This is a test","This is an amazing test");
 };
 
@@ -157,7 +149,6 @@ tryToHijackSidebar = function() {
 approvalChangeCallback = function(value) {
   console.log('changed: ' + JSON.stringify(value));
   $('div.nH.adC').after(pane.getHtml());
-  //testFn();
 }
 
 /**
