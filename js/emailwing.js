@@ -55,7 +55,7 @@ $(document).ready(function() {
       var subject = 'This is the subject';
       var approver = $('input#approval-emails').val().split(',');
       var id = window.location.href.split('?compose=')[1];
-      var link = 'http://0.0.0.0:5000/' + from + '/' + id + '/' + approver;
+      var link = 'http://emailwing.herokuapp.com/' + from + '/' + id + '/' + approver;
 
       startGetApproval(from, id, to, subject, body, approver);
       //window.open(generateMailToLink(to, from, subject, body, to, link));

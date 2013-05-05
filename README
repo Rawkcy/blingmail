@@ -5,14 +5,9 @@ Roxanne Guo
 Sarah Hum
 Jonathan Ng
 
+Chrome extension
 ================
-Setting up flask
-================
-Depricated before it was out.
 
-1. Download virtualenv
-2. Download pip
-3. $ virtualenv env
-4. $ source env/bin/activate
-5. $ 
+- activate developer mode
+- load folder
 
