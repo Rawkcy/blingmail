@@ -1,0 +1,18 @@
+/* put your styles in here */
+button {
+    padding: 0px 15px;
+    line-height: 27px;
+    font-size: 11px;
+    font-weight: bold;
+    color: white;
+    background: orange;
+    border: none;
+    background-image: -webkit-linear-gradient(top, #25ce23, #1fb71d); 
+    border-radius: 2px;
+    border: 1px solid #1ba819;
+    cursor: pointer;
+}
+
+button:hover {
+    background-image: -webkit-linear-gradient(top, #25ce23, #1eaf1c); 
+}
