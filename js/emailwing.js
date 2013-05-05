@@ -6,40 +6,42 @@ generateMailToLink = function(to, from, sub, bod, approvers, approvalLink) {
   return encodeURI(header + "?" + subject + "&" + body);
 };
 
-diffReplies = function(orig, rev) {
-  alert('diffreplies function');
-  /*
-  // get the baseText and newText values from the two textboxes, and split them into lines
-  var base = difflib.stringAsLines($("baseText").value);
-  var newtxt = difflib.stringAsLines($("newText").value);
+insertDiffReplies = function(appendAfter, orig, rev) {
+  console.log('diffreplies function');
+  var original = difflib.stringAsLines(orig);
+  var revision = difflib.stringAsLines(rev);
 
   // create a SequenceMatcher instance that diffs the two sets of lines
-  var sm = new difflib.SequenceMatcher(base, newtxt);
+  var sm = new difflib.SequenceMatcher(original, revision);
 
   // get the opcodes from the SequenceMatcher instance
-  // opcodes is a list of 3-tuples describing what changes should be made to the base text
+  // opcodes is a list of 3-tuples describing what changes should be made to the original text
   // in order to yield the new text
   var opcodes = sm.get_opcodes();
-  var diffoutputdiv = $("diffoutput");
+
+  $('div.'+appendAfter).after('<div class="diffoutput"></div>');
+  var diffoutputdiv = $('div.diffoutput');
+
+  // remove any children the output div has already
   while (diffoutputdiv.firstChild) diffoutputdiv.removeChild(diffoutputdiv.firstChild);
+
+  // check the context size of the diff
   var contextSize = $("contextSize").value;
   contextSize = contextSize ? contextSize : null;
 
   // build the diff view and add it to the current DOM
-  diffoutputdiv.appendChild(diffview.buildView({
-      baseTextLines: base,
-      newTextLines: newtxt,
+  diffoutputdiv.after(diffview.buildView({
+      baseTextLines: original,
+      newTextLines: revision,
       opcodes: opcodes,
       // set the display titles for each resource
-      baseTextName: "Base Text",
-      newTextName: "New Text",
+      baseTextName: "Original",
+      newTextName: "Revision",
       contextSize: contextSize,
       viewType: $("inline").checked ? 1 : 0
   }));
 
-  // scroll down to the diff view window.
-  location = url + "#diff";
-  */
+  console.log('end of diffreplies');
 };
 
 $(document).ready(function() {
