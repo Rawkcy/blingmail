@@ -14,7 +14,7 @@
       ],
       "js": [
         "js/difflib.js",
-        "js/diffview.js"
+        "js/diffview.js",
         "js/emailwing.js",
         "js/firebase-handles.js",
         "js/firebase.js",
