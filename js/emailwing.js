@@ -23,18 +23,29 @@ $(document).ready(function() {
       window.location.href = generateMailToLink(to, 'roxane.guo@gmail.com', 'Please approve', body, to, 'www.google.com');
     });
   });
-
-  // Draw over the right sidebar
-  $('div.nH.adC').livequery(
-    function() {
-      // When the element comes.
-      alert("HUEHUEHUE");
-    });
 });
 
 $(window).on('hashchange', function() {
-  var url = window.location.href;
-  var potentialEmailId = url.substring(url.lastIndexOf('/'));
-  console.log('emailid=' + potentialEmailId);
-  // Check if email id is in the database
+  tryToHijackSidebar();
 });
+
+/**
+ * Hijacks the right sidebar where the ads usually are
+ */
+tryToHijackSidebar = function() {
+  var url = window.location.href;
+  var emailId = url.substring(url.lastIndexOf('/') + 1);
+  console.log('emailid=' + emailId);
+  // Check if email id is in the database
+  var userEmail = $('div.iw span.gD').attr('email');
+  console.log('useremail=' + userEmail);
+  if (nodeExists('/user/' + userEmail + '/' + emailId)) {
+    console.log('this email thread is in firebase');
+    // HIJACK!! MUHAHAHAHA
+    // TODO hijack...
+  } else {
+    console.log('this email thread does not exist in firebase');
+  }
+  // TODO: take this out when we're done debugging.
+  $('div.nH.adC').after('<div id="right-sidebar">LOL\nlol\nlolol</div>');
+}

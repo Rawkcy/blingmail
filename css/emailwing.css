@@ -36,3 +36,12 @@ input#approval-emails {
     color: #777;
     padding: 0px 5px;
 }
+
+div#right-sidebar {
+  width: 220px;
+  top: 43px;
+  right: 16px;
+  position: absolute;
+  z-index: 10;
+  background-color: white;
+}
