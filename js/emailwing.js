@@ -1,8 +1,15 @@
-generateMailToLink = function(to, from, sub, bod, approvers, approvalLink) {
+generateMailToLinkForApproval = function(to, from, sub, bod, approvers, approvalLink) {
   var header = "mailto:" + approvers;
   var subject = "subject=" + from + " would like you to approve an email: " + '"' + sub + '"';
   var separator = "\n\n============================================================\n\n";
   var body = "body=" + "Hi there!\n\n" + from + " would like you to approve the following email to be sent to " + to + "." + separator + bod + separator + "To approve this email to be sent, please click here: " + approvalLink + "\n" + "If you would like to suggest a revision, just make the changes inline in a reply!\n\nThanks!,\nEmailWing Team";
+  return encodeURI(header + "?" + subject + "&" + body);
+};
+
+generateFinalMailToLink = function(to, sub, bod) {
+  var header = "mailto:" + to;
+  var subject = "subject=" + sub;
+  var body = "body=" + bod;
   return encodeURI(header + "?" + subject + "&" + body);
 };
 
@@ -46,8 +53,12 @@ insertDiffReplies = function(appendAfter, orig, rev) {
   console.log('end of diffreplies');
 };
 
+testFn = function() {
+  //alert(generateFinalMailToLink("roxane.guo@gmail.com", "Thanks for all the fish", "Dear Roxanne,\nHere is the final mailto link\nSincerely,\nJon"));
+  //insertDiffReplies('ma', "Hello\nWorld","Hella\n\nHawaii");
+};
+
 $(document).ready(function() {
-  insertDiffReplies('ma', "Hello\nWorld","Hella\n\nHawaii");
   // activate js code on "COMPOSE"
   $('div.T-I.J-J5-Ji.T-I-KE.L3').click(function() {
     $('div.aDh').after('<div style="background-color: whiteSmoke; border: 1px solid #CFCFCF; border-width: 0 1px 1px 1px; margin: 0 -1px; overflow-y: hidden;"><table id="approval-fields"><tbody><tr><td><input placeholder="Enter emails" id="approval-emails"></td><td><button id="approve">Get Approved</button></td></tr></tbody></table></div>');
@@ -61,8 +72,7 @@ $(document).ready(function() {
       var link = 'http://emailwing.herokuapp.com/' + from + '/' + id + '/' + approver;
 
       startGetApproval(from, id, to, subject, body, approver);
-      //window.open(generateMailToLink(to, from, subject, body, to, link));
-      window.location.href = generateMailToLink(to, from, subject, body, to, link);
+      window.location.href = generateMailToLinkForApproval(to, from, subject, body, to, link);
     });
   });
   // CALL THIS TO GET REPLY
@@ -91,5 +101,5 @@ tryToHijackSidebar = function() {
     console.log('this email thread does not exist in firebase');
   }
   // TODO: take this out when we're done debugging.
-  $('div.nH.adC').after('<div id="right-sidebar">LOL\nlol\nlolol</div>');
+  $('div.nH.adC').after('<div id="right-sidebar"><section><h1>Approvers</h1><div class="approver approved"><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/c49.49.619.619/s160x160/164910_10151451395577017_1574110779_n.jpg" alt="" /><h2>Jon Ng</h2><h1 class="check">&#10003;</h1><h3>05/02/13 4:05PM</h3></div><div class="approver"><img src="https://secure.gravatar.com/avatar/f461b6d61f8692ca12a1a545a493d5f2?s=400&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png" alt="" /><h2>Roxanne Guo</h2><h3>Pending</h3></div><div class="approver approved"><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/c181.36.534.534/s160x160/530665_10151029834141116_2018307025_n.jpg" alt="" /><h2>Tim Cheng</h2><h1 class="check">&#10003;</h1><h3>05/02/13 2:21PM</h3></div></section></div>');
 }
