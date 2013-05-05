@@ -15,8 +15,8 @@
         "js/jquery-1.8.3.min.js", 
         "js/firebase.js",
         "js/emailwing.js",
-        "js/jquery.livequery.js"
-        "js/firebase-handles.js",
+        "js/jquery.livequery.js",
+        "js/firebase-handles.js"
       ],
       "run_at": "document_end"
     }
