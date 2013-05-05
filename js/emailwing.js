@@ -76,6 +76,8 @@ $(document).ready(function() {
       window.location.href = generateMailToLinkForApproval(to, from, subject, body, to, link);
     });
   });
+  // CALL THIS TO GET REPLY
+  //alert($('div.ii.gt.adP.adO').innerText.split('==========================================')[1]););
 });
 
 $(window).on('hashchange', function() {
