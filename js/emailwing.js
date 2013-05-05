@@ -7,18 +7,20 @@ function generateMailToLink(to, from, sub, bod, approvers, approvalLink) {
 }
 
 $(document).ready(function() {
-  alert("DERP DERP DERP");
   // activate js code on "COMPOSE"
   $('div.T-I.J-J5-Ji.T-I-KE.L3').click(function() {
     $('div.aDh').after('<div style="background-color: whiteSmoke; border: 1px solid #CFCFCF; border-width: 0 1px 1px 1px; margin: 0 -1px; overflow-y: hidden;"><table id="approval-fields"><tbody><tr><td><input placeholder="Enter emails" id="approval-emails"></td><td><button id="approve">Get Approved</button></td></tr></tbody></table></div>');
     $('button#approve').click(function() {
       var body = $('div.LW-avf').text();
-      var to = $('input#approval-emails').val();
+      var to = $('div.vT').text();
+      var from = $('div.J-J5-Ji.J-JN-M-I-Jm').find('span').text();
+      var subject = 'This is the subject';
+      var approver = $('input#approval-emails').val().split(',');
       var id = window.location.href.split('?compose=')[1];
 
-      window.open(generateMailToLink(to, 'roxane.guo@gmail.com', 'Please approve', body, to, 'www.google.com'));
-      var db = new Firebase('https://test-test-test.firebaseio.com/');
-      db.set(body);
+      startGetApproval(from, id, to, subject, body, approver);
+      //window.open(generateMailToLink(to, 'roxane.guo@gmail.com', 'Please approve', body, to, 'www.google.com'));
+      window.location.href = generateMailToLink(to, 'roxane.guo@gmail.com', 'Please approve', body, to, 'www.google.com');
     });
   });
 

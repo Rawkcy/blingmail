@@ -29,7 +29,7 @@ $.getScript('https://cdn.firebase.com/v0/firebase.js', function() {
  */
 startGetApproval = function(userEmail, emailId, toEmail, subject, body, approvers) {
   console.log('startGetApproval');
-  var rootRef = new Firebase('https://blingmail.firebaseio.com');
+  var rootRef = new Firebase('https://test-test-test.firebaseio.com');
   var emailRef = rootRef.child('user').child(wtf(userEmail)).child(emailId);
 
   // Save all data other than list of approvers. Approvers are special because firebase is weird.
@@ -64,7 +64,7 @@ firebaseCallback = function(error) {
     if (error) {
       console.log('Cannot save data ' + error); 
     } else {
-      console.log('data saved successfully');
+      console.log('Data saved successfully');
     }
 };
 
