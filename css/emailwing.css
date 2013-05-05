@@ -108,6 +108,10 @@ img {
     background: #beffaa;
 }
 
+.edited {
+    background: #fff5a3;
+}
+
 #send-approved {
     float: left;
     margin: 20px;

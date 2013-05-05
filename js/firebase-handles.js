@@ -4,7 +4,8 @@
 var ApprovalStatus = {
   UNSEEN: 0,
   APPROVED: 1,
-  DISAPPROVED: 2
+  DISAPPROVED: 2,
+  EDITS: 3
 };
 
 var FIREBASE_ROOT_URL = 'https://blingmail.firebaseio.com';

@@ -143,6 +143,8 @@ approvalPane = function() {
       var domClass = 'approver';
       if (approvalStatus == ApprovalStatus.APPROVED) {
         domClass = domClass + ' approved';
+      } else if (approvalStatus == ApprovalStatus.EDITS) {
+        domClass = domClass + ' edited';
       }
 
       this.html.push('<div class="' + domClass + '">');
@@ -159,6 +161,9 @@ approvalPane = function() {
       if (approvalStatus == ApprovalStatus.APPROVED) {
         this.html.push('<h1 class="check">&#10003;</h1>');
         this.html.push('<h3>Approved</h3>');
+      } else if (approvalStatus == ApprovalStatus.EDITS) {
+        this.html.push('<h1 class="check">&#10003;</h1>');
+        this.html.push('<h3>Submitted edits</h3>');
       } else {
         this.html.push('<h3>Pending</h3>');
       }
