@@ -19,6 +19,8 @@ insertDiffReplies = function(appendAfter, orig, rev) {
   // in order to yield the new text
   var opcodes = sm.get_opcodes();
 
+  console.log(JSON.stringify(opcodes));
+
   $('div.'+appendAfter).after('<div class="diffoutput"></div>');
   var diffoutputdiv = $('div.diffoutput');
 
@@ -38,13 +40,14 @@ insertDiffReplies = function(appendAfter, orig, rev) {
       baseTextName: "Original",
       newTextName: "Revision",
       contextSize: contextSize,
-      viewType: $("inline").checked ? 1 : 0
+      viewType: 1
   }));
 
   console.log('end of diffreplies');
 };
 
 $(document).ready(function() {
+  insertDiffReplies('ma', "Hello\nWorld","Hella\n\nHawaii");
   // activate js code on "COMPOSE"
   $('div.T-I.J-J5-Ji.T-I-KE.L3').click(function() {
     $('div.aDh').after('<div style="background-color: whiteSmoke; border: 1px solid #CFCFCF; border-width: 0 1px 1px 1px; margin: 0 -1px; overflow-y: hidden;"><table id="approval-fields"><tbody><tr><td><input placeholder="Enter emails" id="approval-emails"></td><td><button id="approve">Get Approved</button></td></tr></tbody></table></div>');
