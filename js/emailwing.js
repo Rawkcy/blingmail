@@ -86,5 +86,5 @@ tryToHijackSidebar = function() {
     console.log('this email thread does not exist in firebase');
   }
   // TODO: take this out when we're done debugging.
-  $('div.nH.adC').after('<div id="right-sidebar">LOL\nlol\nlolol</div>');
+  $('div.nH.adC').after('<div id="right-sidebar"><section><h1>Approvers</h1><div class="approver approved"><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/c49.49.619.619/s160x160/164910_10151451395577017_1574110779_n.jpg" alt="" /><h2>Jon Ng</h2><h1 class="check">&#10003;</h1><h3>05/02/13 4:05PM</h3></div><div class="approver"><img src="https://secure.gravatar.com/avatar/f461b6d61f8692ca12a1a545a493d5f2?s=400&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png" alt="" /><h2>Roxanne Guo</h2><h3>Pending</h3></div><div class="approver approved"><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/c181.36.534.534/s160x160/530665_10151029834141116_2018307025_n.jpg" alt="" /><h2>Tim Cheng</h2><h1 class="check">&#10003;</h1><h3>05/02/13 2:21PM</h3></div></section></div>');
 }

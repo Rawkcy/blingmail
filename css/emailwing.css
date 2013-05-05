@@ -37,11 +37,72 @@ input#approval-emails {
     padding: 0px 5px;
 }
 
+
+/* Approvers Pane
+---------------------------------------------------*/
+
 div#right-sidebar {
-  width: 220px;
-  top: 43px;
-  right: 16px;
-  position: absolute;
-  z-index: 10;
-  background-color: white;
+    width: 220px;
+    top: 43px;
+    right: 16px;
+    position: absolute;
+    z-index: 1;
+    background-color: white;
+}
+
+section {
+    width: 220px;
+    height: 650px;
+    margin: 0px -29px;
+    border-left: 1px solid #ddd;
+    background: #fff;
+}
+
+.check {
+    position: absolute;
+    font-size: 42px;
+    top: 15px;
+    left: 10px;
+    color: #0ad300;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px #555;
+}
+
+h1 {
+    font-size: 16px;
+    font-weight: normal;
+    padding: 0 20px;
+    line-height: 70px;
+    height: 70px;
+    margin: 0;
+}
+
+h2 {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+h3 {
+    font-size: 12px;
+    color: #777;
+    margin: 0;
+    font-weight: normal;
+}
+
+.approver {
+    position: relative;
+    height: 50px;
+    padding: 15px 20px;
+    border-top: 1px solid #ddd;
+    overflow: hidden;
+}
+
+img {
+    width: 40px;
+    float: left;
+    margin: 5px 15px 0 0;
+}
+
+.approved {
+    background: #beffaa;
 }
