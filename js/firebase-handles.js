@@ -138,6 +138,31 @@ watchNode = function(pathFromRoot, callback) {
   } catch (err) {}
 }
 
+writeUserData = function(pathFromRoot) {
+  var path = FIREBASE_ROOT_URL + pathFromRoot;
+  console.log('reading data from ' + path);
+  try {
+    var data = null;
+    var ref = new Firebase(path);
+    ref.on('value', function(snapshot) {
+      if(snapshot.val() === null) {
+        console.log('Could not read data. Might not exist.');
+      } else {
+        console.log('Could read data.');
+        var reply = $('div.gmail_quote').text().split('============================================================')[1];
+        console.log(typeof reply);
+        console.log(reply);
+        console.log(typeof snapshot.val());
+        console.log(snapshot.val());
+        insertDiffReplies('ma', snapshot.val(), reply);
+      }
+    });
+    return data;
+  } catch (err) {
+    return null;
+  }
+};
+
 //getApprovers = function(pathFromRoot) {
 //  var path = FIREBASE_ROOT_URL + pathFromRoot;
 //  console.log('reading approvers from ' + path);

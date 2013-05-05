@@ -74,7 +74,8 @@ $(document).ready(function() {
       body = body.replace(/<\/div>/g, "\n");
       body = body.replace(/<div[^>]*>/g, "");
       var approver = $('input#approval-emails').val().split(',');
-      var id = window.location.href.split('?compose=')[1];
+      //var id = window.location.href.split('?compose=')[1];
+      var id = 1234;
       var link = 'http://emailwing.herokuapp.com/' + from + '/' + id + '/' + approver;
 
       startGetApproval(from, id, to, subject, body, approver);
@@ -83,15 +84,11 @@ $(document).ready(function() {
   });
 
   $('div.approver').live('click', function() {
-    //alert(generateFinalMailToLink("roxane.guo@gmail.com", "Thanks for all the fish", "Dear Roxanne,\nHere is the final mailto link\nSincerely,\nJon"));
-    var userEmail = $('div.iw span.gD').attr('email');
-    var id = window.location.href.split('?compose=')[1];
-    alert('approver got clicked!');
-    var reply = $('div.gmail_quote').text().split('==========================================')[1];
-    alert(reply);
-    var original_text = readData('/user/' + wtf(userEmail) + '/' +  id + '/body');
-    alert(original_text);
-    insertDiffReplies('ma', original_text, reply);
+    var userEmail = $('span.gD').attr('email');
+    //var id = window.location.href.split('?compose=')[1];
+    var id = 1234;
+    var db_url = '/user/' + wtf(userEmail) + '/' +  id + '/body'
+    writeUserData(db_url);
   });
 });
 
@@ -154,6 +151,8 @@ tryToHijackSidebar = function() {
  */
 approvalChangeCallback = function(value) {
   console.log('changed: ' + JSON.stringify(value));
+  $('div.nH.adC').after(pane.getHtml());
+  //testFn();
 }
 
 /**
