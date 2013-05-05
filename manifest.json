@@ -13,13 +13,13 @@
         "css/diffview.css"
       ],
       "js": [
-        "js/difflib.js",
-        "js/diffview.js",
-        "js/emailwing.js",
+        "js/jquery-1.8.3.min.js",
+        "js/jquery.livequery.js",
         "js/firebase-handles.js",
         "js/firebase.js",
-        "js/jquery-1.8.3.min.js", 
-        "js/jquery.livequery.js"
+        "js/difflib.js",
+        "js/diffview.js",
+        "js/emailwing.js"
       ],
       "run_at": "document_end"
     }

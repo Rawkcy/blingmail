@@ -1,10 +1,46 @@
-function generateMailToLink(to, from, sub, bod, approvers, approvalLink) {
+generateMailToLink = function(to, from, sub, bod, approvers, approvalLink) {
   var header = "mailto:" + approvers;
   var subject = "subject=" + from + " would like you to approve an email: " + '"' + sub + '"';
   var separator = "\n\n============================================================\n\n";
   var body = "body=" + "Hi there!\n\n" + from + " would like you to approve the following email to be sent to " + to + "." + separator + bod + separator + "To approve this email to be sent, please click here: " + approvalLink + "\n" + "If you would like to suggest a revision, just make the changes inline in a reply!\n\nThanks!,\nEmailWing Team";
   return encodeURI(header + "?" + subject + "&" + body);
-}
+};
+
+diffReplies = function(orig, rev) {
+  alert('diffreplies function');
+  /*
+  // get the baseText and newText values from the two textboxes, and split them into lines
+  var base = difflib.stringAsLines($("baseText").value);
+  var newtxt = difflib.stringAsLines($("newText").value);
+
+  // create a SequenceMatcher instance that diffs the two sets of lines
+  var sm = new difflib.SequenceMatcher(base, newtxt);
+
+  // get the opcodes from the SequenceMatcher instance
+  // opcodes is a list of 3-tuples describing what changes should be made to the base text
+  // in order to yield the new text
+  var opcodes = sm.get_opcodes();
+  var diffoutputdiv = $("diffoutput");
+  while (diffoutputdiv.firstChild) diffoutputdiv.removeChild(diffoutputdiv.firstChild);
+  var contextSize = $("contextSize").value;
+  contextSize = contextSize ? contextSize : null;
+
+  // build the diff view and add it to the current DOM
+  diffoutputdiv.appendChild(diffview.buildView({
+      baseTextLines: base,
+      newTextLines: newtxt,
+      opcodes: opcodes,
+      // set the display titles for each resource
+      baseTextName: "Base Text",
+      newTextName: "New Text",
+      contextSize: contextSize,
+      viewType: $("inline").checked ? 1 : 0
+  }));
+
+  // scroll down to the diff view window.
+  location = url + "#diff";
+  */
+};
 
 $(document).ready(function() {
   // activate js code on "COMPOSE"
@@ -19,17 +55,9 @@ $(document).ready(function() {
       var id = window.location.href.split('?compose=')[1];
 
       startGetApproval(from, id, to, subject, body, approver);
-      //window.open(generateMailToLink(to, 'roxane.guo@gmail.com', 'Please approve', body, to, 'www.google.com'));
       window.location.href = generateMailToLink(to, 'roxane.guo@gmail.com', 'Please approve', body, to, 'www.google.com');
     });
   });
-
-  // Draw over the right sidebar
-  $('div.nH.adC').livequery(
-    function() {
-      // When the element comes.
-      alert("HUEHUEHUE");
-    });
 });
 
 $(window).on('hashchange', function() {
