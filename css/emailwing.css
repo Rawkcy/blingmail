@@ -14,5 +14,22 @@ button {
 }
 
 button:hover {
-    background-image: -webkit-linear-gradient(top, #25ce23, #1eaf1c); 
+    background-image: -webkit-linear-gradient(top, #25ce23, #1caf1a); 
+    border: 1px solid #1a9316;
+}
+
+table {
+    width: 100%;
+}
+
+table tr td:first-child {
+    width: 114px;
+}
+
+#approval-emails {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: whiteSmoke;
+    font-size: 13px;
 }
