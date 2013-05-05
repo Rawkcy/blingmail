@@ -32,14 +32,9 @@ $(document).ready(function() {
     });
 });
 
-$(document).on('click', function() {
-  // Check if we opened an email thread that we care.
+$(window).on('hashchange', function() {
   var url = window.location.href;
   var potentialEmailId = url.substring(url.lastIndexOf('/'));
   console.log('emailid=' + potentialEmailId);
-  //alert('emailId=' + potentialEmailId);
-})
-
-
-
-
+  // Check if email id is in the database
+});
