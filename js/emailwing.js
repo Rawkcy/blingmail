@@ -51,6 +51,8 @@ insertDiffReplies = function(appendAfter, orig, rev) {
   }));
 
   console.log('end of diffreplies');
+
+  return opcodes;
 };
 
 $(document).ready(function() {
@@ -126,6 +128,7 @@ tryToHijackSidebar = function() {
     console.log('null approvers');
   }
   $('div.nH.adC').after(pane.getHtml());
+  testFn();
 }
 
 /**
@@ -163,7 +166,7 @@ approvalPane = function() {
       this.html.push('</div>');
     },
     getHtml: function() {
-      return this.html.join("") + '</section></div>';
+      return this.html.join("") + '<button id="send-approved">Send Approved</button></section></div>';
     }
   }
   return pane;

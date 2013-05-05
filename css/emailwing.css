@@ -43,11 +43,12 @@ input#approval-emails {
 
 div#right-sidebar {
     width: 220px;
-    top: 43px;
+    top: 0;
     right: 16px;
     position: absolute;
     z-index: 1;
     background-color: white;
+    height: 100%;
 }
 
 section {
@@ -105,4 +106,9 @@ img {
 
 .approved {
     background: #beffaa;
+}
+
+#send-approved {
+    float: left;
+    margin: 20px;
 }

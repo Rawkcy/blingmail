@@ -7,13 +7,13 @@ var ApprovalStatus = {
   DISAPPROVED: 2
 };
 
-var FIREBASE_ROOT_URL = 'https://blingmail.firebaseio.com';
+var FIREBASE_ROOT_URL = 'https://test-test-test.firebaseio.com';
 
 /**
  * Loads Firebase js library
  */
 $.getScript('https://cdn.firebase.com/v0/firebase.js', function() {
-    console.log('get script');
+    console.log('Got Firebase js script.');
 });
 
 
