@@ -51,6 +51,8 @@ insertDiffReplies = function(appendAfter, orig, rev) {
   }));
 
   console.log('end of diffreplies');
+
+  return opcodes;
 };
 
 testFn = function() {
