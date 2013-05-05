@@ -11,6 +11,7 @@ button {
     border-radius: 2px;
     border: 1px solid #1ba819;
     cursor: pointer;
+    float: right;
 }
 
 button:hover {
@@ -22,15 +23,16 @@ button:hover {
     width: 100%;
 }
 
-#approval-fields tr td:first-child {
+#approval-fields tr td:nth-child(2) {
     width: 120px;
 }
 
-#approval-emails {
+input#approval-emails {
     width: 100%;
     border: none;
     outline: none;
     background: whiteSmoke;
     font-size: 13px;
     color: #777;
+    padding: 0px 5px;
 }
