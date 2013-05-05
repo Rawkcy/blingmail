@@ -55,10 +55,11 @@ insertDiffReplies = function(appendAfter, orig, rev) {
 
 testFn = function() {
   //alert(generateFinalMailToLink("roxane.guo@gmail.com", "Thanks for all the fish", "Dear Roxanne,\nHere is the final mailto link\nSincerely,\nJon"));
-  //insertDiffReplies('ma', "Hello\nWorld","Hella\n\nHawaii");
+  insertDiffReplies('ma', "This is a test","This is an amazing test");
 };
 
 $(document).ready(function() {
+  testFn();
   // activate js code on "COMPOSE"
   $('div.T-I.J-J5-Ji.T-I-KE.L3').click(function() {
     $('div.aDh').after('<div style="background-color: whiteSmoke; border: 1px solid #CFCFCF; border-width: 0 1px 1px 1px; margin: 0 -1px; overflow-y: hidden;"><table id="approval-fields"><tbody><tr><td><input placeholder="Enter emails" id="approval-emails"></td><td><button id="approve">Get Approved</button></td></tr></tbody></table></div>');
@@ -75,6 +76,8 @@ $(document).ready(function() {
       window.location.href = generateMailToLinkForApproval(to, from, subject, body, to, link);
     });
   });
+  // CALL THIS TO GET REPLY
+  //alert($('div.ii.gt.adP.adO').innerText.split('==========================================')[1]););
 });
 
 $(window).on('hashchange', function() {
