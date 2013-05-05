@@ -74,7 +74,7 @@ firebaseCallback = function(error) {
  * Turn dots to comma
  */
 wtf = function(string) {
-  return string.replace(/\./g, ',');
+  return String(string).replace(/\./g, ',');
 };
 
 /**
