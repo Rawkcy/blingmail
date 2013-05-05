@@ -75,10 +75,14 @@ $(document).ready(function() {
 
   $('div.approver').live('click', function() {
     //alert(generateFinalMailToLink("roxane.guo@gmail.com", "Thanks for all the fish", "Dear Roxanne,\nHere is the final mailto link\nSincerely,\nJon"));
+    var userEmail = $('div.iw span.gD').attr('email');
+    var id = window.location.href.split('?compose=')[1];
     alert('approver got clicked!');
     var reply = $('div.gmail_quote').text().split('==========================================')[1];
     alert(reply);
-    insertDiffReplies('ma', "This is a test", reply);
+    var original_text = readData('/user/' + wtf(userEmail) + '/' +  id + '/body');
+    alert(original_text);
+    insertDiffReplies('ma', original_text, reply);
   });
 });
 
