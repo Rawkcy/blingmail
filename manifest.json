@@ -16,6 +16,7 @@
         "js/firebase.js",
         "js/emailwing.js",
         "js/jquery.livequery.js"
+        "js/firebase-handles.js",
       ],
       "run_at": "document_end"
     }
