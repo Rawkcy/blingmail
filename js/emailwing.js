@@ -9,7 +9,7 @@ generateMailToLinkForApproval = function(to, from, sub, bod, approvers, approval
 generateFinalMailToLink = function(to, sub, bod) {
   var header = "mailto:" + to;
   var subject = "subject=" + sub;
-  var body = "body=" bod;
+  var body = "body=" + bod;
   return encodeURI(header + "?" + subject + "&" + body);
 };
 
@@ -53,8 +53,12 @@ insertDiffReplies = function(appendAfter, orig, rev) {
   console.log('end of diffreplies');
 };
 
+testFn = function() {
+  //alert(generateFinalMailToLink("roxane.guo@gmail.com", "Thanks for all the fish", "Dear Roxanne,\nHere is the final mailto link\nSincerely,\nJon"));
+  //insertDiffReplies('ma', "Hello\nWorld","Hella\n\nHawaii");
+};
+
 $(document).ready(function() {
-  insertDiffReplies('ma', "Hello\nWorld","Hella\n\nHawaii");
   // activate js code on "COMPOSE"
   $('div.T-I.J-J5-Ji.T-I-KE.L3').click(function() {
     $('div.aDh').after('<div style="background-color: whiteSmoke; border: 1px solid #CFCFCF; border-width: 0 1px 1px 1px; margin: 0 -1px; overflow-y: hidden;"><table id="approval-fields"><tbody><tr><td><input placeholder="Enter emails" id="approval-emails"></td><td><button id="approve">Get Approved</button></td></tr></tbody></table></div>');
