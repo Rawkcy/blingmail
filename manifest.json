@@ -8,11 +8,13 @@
   "content_scripts": [
     {
       "matches": ["https://mail.google.com/*"],
-      "css": ["emailwing.css"],
+      "css": [
+        "css/emailwing.css"
+      ],
       "js": [
-        "jquery-1.8.3.min.js", 
-        "firebase.js",
-        "emailwing.js"
+        "js/jquery-1.8.3.min.js", 
+        "js/firebase.js",
+        "js/emailwing.js"
       ],
       "run_at": "document_end"
     }
