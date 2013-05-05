@@ -8,13 +8,13 @@ var ApprovalStatus = {
   EDITS: 3
 };
 
-var FIREBASE_ROOT_URL = 'https://blingmail.firebaseio.com';
+var FIREBASE_ROOT_URL = 'https://test-test-test.firebaseio.com';
 
 /**
  * Loads Firebase js library
  */
 $.getScript('https://cdn.firebase.com/v0/firebase.js', function() {
-    console.log('get script');
+    console.log('Got Firebase js script.');
 });
 
 
@@ -75,7 +75,7 @@ firebaseCallback = function(error) {
  * Turn dots to comma
  */
 wtf = function(string) {
-  return string.replace(/\./g, ',');
+  return String(string).replace(/\./g, ',');
 };
 
 /**

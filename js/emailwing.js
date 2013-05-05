@@ -55,31 +55,38 @@ insertDiffReplies = function(appendAfter, orig, rev) {
   return opcodes;
 };
 
-testFn = function() {
-  //alert(generateFinalMailToLink("roxane.guo@gmail.com", "Thanks for all the fish", "Dear Roxanne,\nHere is the final mailto link\nSincerely,\nJon"));
-  insertDiffReplies('ma', "This is a test","This is an amazing test");
-};
-
 $(document).ready(function() {
-  
   // activate js code on "COMPOSE"
   $('div.T-I.J-J5-Ji.T-I-KE.L3').click(function() {
     $('div.aDh').after('<div style="background-color: whiteSmoke; border: 1px solid #CFCFCF; border-width: 0 1px 1px 1px; margin: 0 -1px; overflow-y: hidden;"><table id="approval-fields"><tbody><tr><td><input placeholder="Enter emails" id="approval-emails"></td><td><button id="approve">Get Approved</button></td></tr></tbody></table></div>');
     $('button#approve').click(function() {
-      var body = $('div.LW-avf').text();
-      var to = $('div.vT').text().match(/\(([^)]+)\)/)[1]; // get between ()
-      var from = $('div.J-J5-Ji.J-JN-M-I-Jm').find('span').text().match(/\<([^)]+)\>/)[1]; // get between <>
-      var subject = 'This is the subject';
+      var to = $('div.vT').text().match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi);
+      var from = $('div.J-J5-Ji.J-JN-M-I-Jm').find('span').text().match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi);
+      var subject = $('input[name="subjectbox"]').val();
+      var body = $('div.LW-avf').html();
+      body = body.replace(/<br>/g, "\n");
+      body = body.replace(/<\/div>/g, "\n");
+      body = body.replace(/<div[^>]*>/g, "");
       var approver = $('input#approval-emails').val().split(',');
       var id = window.location.href.split('?compose=')[1];
       var link = 'http://emailwing.herokuapp.com/' + from + '/' + id + '/' + approver;
 
       startGetApproval(from, id, to, subject, body, approver);
-      window.location.href = generateMailToLinkForApproval(to, from, subject, body, to, link);
+      window.open(generateMailToLinkForApproval(to, from, subject, body, to, link));
     });
   });
-  // CALL THIS TO GET REPLY
-  //alert($('div.ii.gt.adP.adO').innerText.split('==========================================')[1]););
+
+  $('div.approver').live('click', function() {
+    //alert(generateFinalMailToLink("roxane.guo@gmail.com", "Thanks for all the fish", "Dear Roxanne,\nHere is the final mailto link\nSincerely,\nJon"));
+    var userEmail = $('div.iw span.gD').attr('email');
+    var id = window.location.href.split('?compose=')[1];
+    alert('approver got clicked!');
+    var reply = $('div.gmail_quote').text().split('==========================================')[1];
+    alert(reply);
+    var original_text = readData('/user/' + wtf(userEmail) + '/' +  id + '/body');
+    alert(original_text);
+    insertDiffReplies('ma', original_text, reply);
+  });
 });
 
 $(window).on('hashchange', function() {
