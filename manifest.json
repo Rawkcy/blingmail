@@ -8,6 +8,7 @@
   "content_scripts": [
     {
       "matches": ["https://mail.google.com/*"],
+      "css": ["style.css"],
       "js": [
         "jquery-1.8.3.min.js", 
         "firebase.js",
