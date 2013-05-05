@@ -19,6 +19,8 @@ insertDiffReplies = function(appendAfter, orig, rev) {
   // in order to yield the new text
   var opcodes = sm.get_opcodes();
 
+  console.log(JSON.stringify(opcodes));
+
   $('div.'+appendAfter).after('<div class="diffoutput"></div>');
   var diffoutputdiv = $('div.diffoutput');
 
@@ -38,13 +40,14 @@ insertDiffReplies = function(appendAfter, orig, rev) {
       baseTextName: "Original",
       newTextName: "Revision",
       contextSize: contextSize,
-      viewType: $("inline").checked ? 1 : 0
+      viewType: 1
   }));
 
   console.log('end of diffreplies');
 };
 
 $(document).ready(function() {
+  insertDiffReplies('ma', "Hello\nWorld","Hella\n\nHawaii");
   // activate js code on "COMPOSE"
   $('div.T-I.J-J5-Ji.T-I-KE.L3').click(function() {
     $('div.aDh').after('<div style="background-color: whiteSmoke; border: 1px solid #CFCFCF; border-width: 0 1px 1px 1px; margin: 0 -1px; overflow-y: hidden;"><table id="approval-fields"><tbody><tr><td><input placeholder="Enter emails" id="approval-emails"></td><td><button id="approve">Get Approved</button></td></tr></tbody></table></div>');
@@ -65,8 +68,26 @@ $(document).ready(function() {
 });
 
 $(window).on('hashchange', function() {
-  var url = window.location.href;
-  var potentialEmailId = url.substring(url.lastIndexOf('/'));
-  console.log('emailid=' + potentialEmailId);
-  // Check if email id is in the database
+  tryToHijackSidebar();
 });
+
+/**
+ * Hijacks the right sidebar where the ads usually are
+ */
+tryToHijackSidebar = function() {
+  var url = window.location.href;
+  var emailId = url.substring(url.lastIndexOf('/') + 1);
+  console.log('emailid=' + emailId);
+  // Check if email id is in the database
+  var userEmail = $('div.iw span.gD').attr('email');
+  console.log('useremail=' + userEmail);
+  if (nodeExists('/user/' + userEmail + '/' + emailId)) {
+    console.log('this email thread is in firebase');
+    // HIJACK!! MUHAHAHAHA
+    // TODO hijack...
+  } else {
+    console.log('this email thread does not exist in firebase');
+  }
+  // TODO: take this out when we're done debugging.
+  $('div.nH.adC').after('<div id="right-sidebar">LOL\nlol\nlolol</div>');
+}

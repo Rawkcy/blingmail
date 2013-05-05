@@ -7,6 +7,8 @@ var ApprovalStatus = {
   DISAPPROVED: 2
 };
 
+var FIREBASE_ROOT_URL = 'https://blingmail.firebaseio.com';
+
 /**
  * Loads Firebase js library
  */
@@ -29,7 +31,7 @@ $.getScript('https://cdn.firebase.com/v0/firebase.js', function() {
  */
 startGetApproval = function(userEmail, emailId, toEmail, subject, body, approvers) {
   console.log('startGetApproval');
-  var rootRef = new Firebase('https://test-test-test.firebaseio.com');
+  var rootRef = new Firebase(FIREBASE_ROOT_URL);
   var emailRef = rootRef.child('user').child(wtf(userEmail)).child(emailId);
 
   // Save all data other than list of approvers. Approvers are special because firebase is weird.
@@ -55,7 +57,7 @@ startGetApproval = function(userEmail, emailId, toEmail, subject, body, approver
  */
 sendApproval = function(authorEmail, approverEmail, emailId, approvalStatus) {
   console.log('sendApproval');
-  var rootRef = new Firebase('https://blingmail.firebaseio.com');
+  var rootRef = new Firebase(FIREBASE_ROOT_URL);
   var emailRef = rootRef.child('user').child(wtf(authorEmail)).child(emailId);
   emailRef.child('approver').child(wtf(approverEmail)).update({approved: approvalStatus}, firebaseCallback);
 };
@@ -73,7 +75,30 @@ firebaseCallback = function(error) {
  */
 wtf = function(string) {
   return string.replace(/\./g, ',');
-}
+};
+
+/**
+ * Checks if a firebase node exists.
+ */
+nodeExists = function(pathFromRoot) {
+  var path = FIREBASE_ROOT_URL + pathFromRoot;
+  console.log(path);
+  try {
+    var emailRef = new Firebase(path);
+    var exist;
+    emailRef.on('value', function(snapshot) {
+      if(snapshot.val() === null) {
+        alert('This email id does not exist.');
+        exist = false;
+      } else {
+        exist = true;
+      }
+    });
+    return exist;
+  } catch (err) {
+    return false;
+  }
+};
 
 
 
