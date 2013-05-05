@@ -59,7 +59,7 @@ testFn = function() {
 };
 
 $(document).ready(function() {
-  testFn();
+  
   // activate js code on "COMPOSE"
   $('div.T-I.J-J5-Ji.T-I-KE.L3').click(function() {
     $('div.aDh').after('<div style="background-color: whiteSmoke; border: 1px solid #CFCFCF; border-width: 0 1px 1px 1px; margin: 0 -1px; overflow-y: hidden;"><table id="approval-fields"><tbody><tr><td><input placeholder="Enter emails" id="approval-emails"></td><td><button id="approve">Get Approved</button></td></tr></tbody></table></div>');
@@ -126,6 +126,7 @@ tryToHijackSidebar = function() {
     console.log('null approvers');
   }
   $('div.nH.adC').after(pane.getHtml());
+  testFn();
 }
 
 /**
@@ -163,7 +164,7 @@ approvalPane = function() {
       this.html.push('</div>');
     },
     getHtml: function() {
-      return this.html.join("") + '</section></div>';
+      return this.html.join("") + '<button id="send-approved">Send Approved</button></section></div>';
     }
   }
   return pane;

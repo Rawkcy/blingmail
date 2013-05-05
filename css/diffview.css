@@ -28,7 +28,17 @@ authors and should not be interpreted as representing official policies, either 
 or implied, of Chas Emerick.
 */
 .aeU {
-	width: 100% !important;
+	width: 90% !important;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	background: #fff;
+	left: -5px;
+	z-index: 1;
+}
+
+.ma {
+	display: none;
 }
 
 table.diff {
@@ -57,7 +67,12 @@ table.diff thead {
 	font-family:Verdana
 }
 table.diff thead th.texttitle {
-	display: none;
+	text-align: left;
+	font-size: 16px;
+	height: 70px;
+	font-weight: normal;
+	background: #fff;
+	padding: 0 0 0 15px;
 }
 table.diff tbody td {
 	padding:10px 15px 5px 15px;

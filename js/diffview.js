@@ -83,9 +83,9 @@ diffview = {
 		var node = document.createElement("tr");
 		tdata.appendChild(node);
 		if (inline) {
+			node.appendChild(ctelt("th", "texttitle", "Revision History"));
 			node.appendChild(document.createElement("th"));
 			node.appendChild(document.createElement("th"));
-			node.appendChild(ctelt("th", "texttitle", baseTextName + " vs. " + newTextName));
 		} else {
 			node.appendChild(document.createElement("th"));
 			node.appendChild(ctelt("th", "texttitle", baseTextName));
