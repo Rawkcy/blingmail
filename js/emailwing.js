@@ -15,8 +15,8 @@ $(document).ready(function() {
       var body = $('div.LW-avf').text();
       var to = $('input#approval-emails').val();
       var id = window.location.href.split('?compose=')[1];
-
-      window.open(generateMailToLink(to, 'roxane.guo@gmail.com', 'Please approve', body, to, 'www.google.com'));
+      var mailLink = generateMailToLink(to, 'from@hello.com', 'subject placeholder', body, 'approver@hello.com', 'www.google.com/approvalPlaceholder');
+      window.open(mailLink);
       var db = new Firebase('https://test-test-test.firebaseio.com/');
       db.set(body);
     });
