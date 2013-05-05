@@ -60,10 +60,13 @@ $(document).ready(function() {
   $('div.T-I.J-J5-Ji.T-I-KE.L3').click(function() {
     $('div.aDh').after('<div style="background-color: whiteSmoke; border: 1px solid #CFCFCF; border-width: 0 1px 1px 1px; margin: 0 -1px; overflow-y: hidden;"><table id="approval-fields"><tbody><tr><td><input placeholder="Enter emails" id="approval-emails"></td><td><button id="approve">Get Approved</button></td></tr></tbody></table></div>');
     $('button#approve').click(function() {
-      var body = $('div.LW-avf').text();
       var to = $('div.vT').text().match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi);
       var from = $('div.J-J5-Ji.J-JN-M-I-Jm').find('span').text().match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi);
       var subject = $('input[name="subjectbox"]').val();
+      var body = $('div.LW-avf').html();
+      body = body.replace(/<br>/g, "\n");
+      body = body.replace(/<\/div>/g, "\n");
+      body = body.replace(/<div[^>]*>/g, "");
       var approver = $('input#approval-emails').val().split(',');
       var id = window.location.href.split('?compose=')[1];
       var link = 'http://emailwing.herokuapp.com/' + from + '/' + id + '/' + approver;
