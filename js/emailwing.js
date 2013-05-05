@@ -23,6 +23,21 @@ $(document).ready(function() {
   });
 
   // Draw over the right sidebar
-  $('div.Bu.y3').on('click', function() {
-  });
+  $('div.nH.adC').livequery(
+    function() {
+      // When the element comes.
+      alert("HUEHUEHUE");
+    });
 });
+
+$(document).on('click', function() {
+  // Check if we opened an email thread that we care.
+  var url = window.location.href;
+  var potentialEmailId = url.substring(url.lastIndexOf('/'));
+  console.log('emailid=' + potentialEmailId);
+  //alert('emailId=' + potentialEmailId);
+})
+
+
+
+
